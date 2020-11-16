@@ -3,7 +3,7 @@
 ### Pipeline details...
 
 **Prepared by:** Kousik Kundu \
-**Date:** August, 2017 \
+**Date:** August, 2018 \
 **Purpose:** Genotype refinement and Imputation+phasing \
 **Which project this pipeline has been applied to:** BLUEPRINT Phase 2 \
 **Software:** BEAGLE 4.1 (```/nfs/team151/software/beagle_4/beagle.21Jan17.6cc.jar```)
