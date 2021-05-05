@@ -215,7 +215,6 @@ while [ $Check -lt "1" ] ; do
 done
 
 
-
 rm $TEMPDIR/summary_stat_gwas* $TEMPDIR/SNPcond.cma.cojo $TEMPDIR/SNPcond.given.cojo $TEMPDIR/*extracted* $TEMPDIR/extract_range.txt
 rm $TEMPDIR/summary_stat_gcta_input.*
 

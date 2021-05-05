@@ -3,7 +3,6 @@
 # Conditional analysis using GCTA
 
 
-
 ######################################## PATHS ##########################################
 #																						#
 #  			Paths and Env. variable for all required softwares and files				#
@@ -192,5 +191,5 @@ while [ $Check -lt "1" ] ; do
 
 done
 
-# rm $TEMPDIR/Dup_SNP_list.txt $TEMPDIR/SNPcond.cma.cojo $TEMPDIR/SNPcond.given.cojo $TEMPDIR/SNP_list_SNPid.txt $TEMPDIR/SNP_list.txt
-# rm $TEMPDIR/summary_stat_gcta_input.ma
+rm $TEMPDIR/Dup_SNP_list.txt $TEMPDIR/SNPcond.cma.cojo $TEMPDIR/SNPcond.given.cojo $TEMPDIR/SNP_list_SNPid.txt $TEMPDIR/SNP_list.txt
+rm $TEMPDIR/summary_stat_gcta_input.ma
