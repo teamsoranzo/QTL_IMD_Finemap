@@ -3,4 +3,4 @@
 - **Genotype data processing**
   - Full pipeline for Genotype refinement and Imputation + Phasing is documented in *Genotype_refinement_AND_Imputation_pipeline.md*
 - **QTL mapping**
-  - Full pipeline for QTL mapping is documented in QTL_mapping_pipeline.md
+  - Full pipeline for QTL mapping is documented in *QTL_mapping/QTL_mapping_pipeline.md*
