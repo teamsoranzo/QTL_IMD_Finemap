@@ -209,80 +209,103 @@ For example if the a job under NEU_PU1_peer_10(under eqtl_result) failed, you sh
 
 
 **7. run summary**
-code is the same folder as eqtl($path/wp10extlimix/pysrc/eqtl)
-lpython run_summary_wp10x.py $path/wp10_ex_pu1_limix/eqtl_result_2500win/ after_peer/
 
-name the summary with trait/qtl type
-lpython rename_all_summary.py $path/wp10_ex_pu1_limix/eqtl_result/
+code is the same folder as eqtl(`$path/wp10extlimix/pysrc/eqtl`) \
+`lpython run_summary_wp10x.py $path/wp10_ex_pu1_limix/eqtl_result_2500win/ after_peer/`
+
+name the summary with `trait/qtl` type \
+`lpython rename_all_summary.py $path/wp10_ex_pu1_limix/eqtl_result/`
 
 
 CHANGE:
-in line 37 — eqtl_cis_summary_output_all.py / eqtl_cis_summary_new.py
+in line 37 — `eqtl_cis_summary_output_all.py / eqtl_cis_summary_new.py` \
 CHANGE to your window size, here it is 2.5KB —>     data = QtlData(my_fg,my_fp,2500)
 
 
-code is the same folder as eqtl($path/wp10extlimix/pysrc/eqtl)
-lpython run_summary_wp10x.py $path/wp10_ex_pu1_limix/eqtl_result_2500win/ after_peer/
+code is the same folder as eqtl(`$path/wp10extlimix/pysrc/eqtl`) \
+`lpython run_summary_wp10x.py $path/wp10_ex_pu1_limix/eqtl_result_2500win/ after_peer/`
 
-name the summary with trait/qtl type
-lpython rename_all_summary.py $path/wp10_ex_pu1_limix/eqtl_result/
+name the summary with `trait/qtl` type
+`lpython rename_all_summary.py $path/wp10_ex_pu1_limix/eqtl_result/`
 
 This script will generate All summary (in txt format) and simple summary (in hdf5 format) files.
 
-to generate all summary table: /nfs/team151_data03/WP10_release/release_V1_Oct2016/LIMIX/pysrc/eqtl/eqtl_cis_summary_output_all.py
+to generate all summary table: `/nfs/team151_data03/WP10_release/release_V1_Oct2016/LIMIX/pysrc/eqtl/eqtl_cis_summary_output_all.py`
 
-*OUTPUT table format
-1          2    3     4          5      6            7
-geneID rs pos raw_pv Beta Bonf_pv local_FDR
+**OUTPUT table format**
+
+1: geneID \
+2: rs \
+3: pos \
+4: raw_pv \
+5: Beta \
+6: Bonf_pv \
+7: local_FDR
 
 
-to generate simple table         : /nfs/team151_data03/WP10_release/release_V1_Oct2016/LIMIX/pysrc/eqtl/eqtl_cis_summary_new.py
-                                                   the simple table generated here in hdf5 format will have a global FDR value with header 'qv_all'
+**To generate simple table:** \ 
+`/nfs/team151_data03/WP10_release/release_V1_Oct2016/LIMIX/pysrc/eqtl/eqtl_cis_summary_new.py` 
+
+The simple table generated here in hdf5 format will have a global FDR value with header 'qv_all'
 The output simple table is in hdf5 format.
 
-To produce a text file from hdf5 simple table: 
-/nfs/team151_data03/WP10_release/release_V1_Oct2016/LIMIX/get.table.from.simple.hdf5.R <simple.hdf5> <output_filename>
+**To produce a text file from hdf5 simple table:** \
+`/nfs/team151_data03/WP10_release/release_V1_Oct2016/LIMIX/get.table.from.simple.hdf5.R <simple.hdf5> <output_filename>`
+    
 This R script will produce a simple table with this format:
-*OUTPUT table format
-1   2          3                    4               5              6     7      8   9            10            11
-rs geneID gene_chrom gene_start gene_end pos beta pv pv_bonf pv_storey qv_all
+
+**OUTPUT table format**
+    
+1: rs \
+2: geneID \
+3: gene_chrom\
+4: gene_start \
+5: gene_end \
+6: pos \
+7: beta \
+8: pv \
+9: pv_bonf \
+10: pv_storey \
+11: qv_all 
+    
 >> pv_storey is local FDR
 >> qv_all is global FDR
----
-8. Properly format summary statistics AND change sign of Beta
-
+    
+----
+    
+**8. Properly format summary statistics AND change sign of Beta**
+```
     chr:pos_ref_alt rsid phenotypeID p.value beta Bonferroni.p lFDR alt.AF std.error gFDR
     20:48969024_A_G rs6125980 ENSG00000000419.8 2.953e-05 -0.7903 0.120613960675 1.187e-01 0.0725 0.1892 0.263348426391099
-
-RUN:
+```
+    
+```    
+**Change the Beta sign**
 bash ~/Projects/Scripts/Blueprint/Re_analysis/Limix/summary_format_and_beta_change.sh <ID> <infile> <Beta_key_file>
-## Change the Beta sign
-#echo 'bash ~/Projects/Scripts/Blueprint/Re_analysis/Limix/summary_format_and_beta_change.sh ${LSB_JOBINDEX} infile.txt' | bsub -G hematopoiesis -J "Beta_change[1-22]" -o JOB/%J.%I.beta_change.o -q normal -R "select[mem>=2000] rusage[mem=2000] span[hosts=1]" -n1 -M2000;
+```
 
-Calculate SE:
-Rscript ~/Projects/Scripts/Blueprint/Re_analysis/Limix/SE_from_beta_and_pval.R  <infile> <outfile>
-Example:
-## Calculate the SE
-#Rscript ~/Projects/Scripts/Blueprint/Re_analysis/Limix/SE_from_beta_and_pval.R  qtl_result/mono_psi_nor_31052017.txt_sort_peer_10/runs/split_folder/mono_psi_nor_31052017.txt_sort_peer_10_summary.Beta_changed.txt qtl_result/mono_psi_nor_31052017.txt_sort_peer_10/runs/split_folder/mono_psi_nor_31052017.txt_sort_peer_10_summary.Beta_changed.SE.txt
+**Calculate SE:**
+`Rscript ~/Projects/Scripts/Blueprint/Re_analysis/Limix/SE_from_beta_and_pval.R  <infile> <outfile>`
+  
+----
+    
+**9. EigenMT  https://github.com/joed3/eigenMT**
+`/nfs/team151_data03/WP10_release/release_V1_Oct2016/LIMIX/eigenMT.py`
 
-
-
-9. EigenMT  https://github.com/joed3/eigenMT
-/nfs/team151_data03/WP10_release/release_V1_Oct2016/LIMIX/eigenMT.py
-
-
+```
 *must install scikit
 pip install --user -U scikit-learn
 
 *For updated version of numpy
 cd /nfs/team151/kk8/Py_LIB/numpy-1.11.2/
 python setup.py build -j 4 install --prefix $HOME/.local
-
-Before running - 
+```
+    
+**Before running -**
 a)    EigenMT should be run on chromosome-wise 
 b)    The variance present in the genotype matrix (genotype.txt) should also be present on the qtl file (cis.eqtls) 
 
-
+```
 python eigenMT.py \
         --CHROM 19 \
         --QTL example/cis.eqtls.txt \
@@ -305,26 +328,27 @@ Used Default values:
 
 - - QTL    
     simple format of  three columns: 1. the SNP ID, 2. the gene ID, and 3. the cis-eQTL p-value. This file must contain a header line with the p-value column indicated by p-value.
+```
+    
 
-RUN:
-bash EigenMT_pval_calculation.sh <chr> <mono> <gene>
-RUN EigenMT -
-#echo 'bash EigenMT_pval_calculation.sh ${LSB_JOBINDEX} tcel meth' | bsub -G hematopoiesis -J "eigenMT[1-22]" -o JOB/%J.%I.tcel.meth.o -q normal -R "select[mem>=4000] rusage[mem=4000] span[hosts=1]" -n1 -M4000;
+`bash EigenMT_pval_calculation.sh <chr> <mono> <gene>`
 
 
-10. Storey FDR collection on adjusted p-values from step 9 —> Calculate global FDR on EigenMT corrected P-value to be added to simple table
-Use R function:
-Rscript Rscript.Storey.Qval.R <input> <output>
+
+**10. Storey FDR collection on adjusted p-values from step 9 —> Calculate global FDR on EigenMT corrected P-value to be added to simple table**
+
+Use R function: \
+`Rscript Rscript.Storey.Qval.R <input> <output>` \
 Run manually for all Celltypes and features (total 15) - it was quick !!
 
 Input file: EigenMT output file
 
 
-11. Calculate the Eigen.pval 
+**11. Calculate the Eigen.pval**
 
 
 ## Eigen P.value merge (simple table)
-# (echo "chr.pos_ref_alt rsid phenotypeID p.value beta Bonferroni.p lFDR alt.AF se Eigen.p gFDR" && awk 'NR==FNR {h[$2] = $0; next} {print $0,h[$3]}'  EigenMT/mono_K4ME1_all_EigenMT_gFDR.txt qtl_result/mono_K4ME1_log2rpm_31052017_bedmap_peer_10/runs/split_folder/mono_K4ME1_log2rpm_31052017_bedmap_peer_10_summary.Beta_changed.SE.txt |sed '1d'| awk '{if($3 ==$12) print $1,$2,$3,$4,$5,$6,$7,$8,$10,$14,$16}') > qtl_result/mono_K4ME1_log2rpm_31052017_bedmap_peer_10/runs/split_folder/mono_K4ME1_log2rpm_31052017_bedmap_peer_10_summary.Beta_changed.SE.Eigen.pval.txt
+`(echo "chr.pos_ref_alt rsid phenotypeID p.value beta Bonferroni.p lFDR alt.AF se Eigen.p gFDR" && awk 'NR==FNR {h[$2] = $0; next} {print $0,h[$3]}'  EigenMT/mono_K4ME1_all_EigenMT_gFDR.txt qtl_result/mono_K4ME1_log2rpm_31052017_bedmap_peer_10/runs/split_folder/mono_K4ME1_log2rpm_31052017_bedmap_peer_10_summary.Beta_changed.SE.txt |sed '1d'| awk '{if($3 ==$12) print $1,$2,$3,$4,$5,$6,$7,$8,$10,$14,$16}') > qtl_result/mono_K4ME1_log2rpm_31052017_bedmap_peer_10/runs/split_folder/mono_K4ME1_log2rpm_31052017_bedmap_peer_10_summary.Beta_changed.SE.Eigen.pval.txt`
     
     
 
