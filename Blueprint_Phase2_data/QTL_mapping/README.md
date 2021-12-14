@@ -347,7 +347,7 @@ Input file: EigenMT output file
 **11. Calculate the Eigen.pval**
 
 
-## Eigen P.value merge (simple table)
+**Eigen P.value merge (simple table)**
 `(echo "chr.pos_ref_alt rsid phenotypeID p.value beta Bonferroni.p lFDR alt.AF se Eigen.p gFDR" && awk 'NR==FNR {h[$2] = $0; next} {print $0,h[$3]}'  EigenMT/mono_K4ME1_all_EigenMT_gFDR.txt qtl_result/mono_K4ME1_log2rpm_31052017_bedmap_peer_10/runs/split_folder/mono_K4ME1_log2rpm_31052017_bedmap_peer_10_summary.Beta_changed.SE.txt |sed '1d'| awk '{if($3 ==$12) print $1,$2,$3,$4,$5,$6,$7,$8,$10,$14,$16}') > qtl_result/mono_K4ME1_log2rpm_31052017_bedmap_peer_10/runs/split_folder/mono_K4ME1_log2rpm_31052017_bedmap_peer_10_summary.Beta_changed.SE.Eigen.pval.txt`
     
     
