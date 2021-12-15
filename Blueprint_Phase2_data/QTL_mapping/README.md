@@ -30,7 +30,7 @@ shortcuts \
 inputs: 
 - count.bed
            read counts matrix in rows [features] X cols [donors] \
-            `Ex. /lustre/scratch114/projects/hematopoiesis/Blueprint/Analysis/lv3/WP10X/BEDMAP.NEU.PU1/limix.FINAL.matrix.24112016.log2rpm.NEU.PU1.BEDMAP.NEU.PU1.bed`
+
 
 - anno.bed
             annotation file of the features:   feature_name    chr    start    end
