@@ -185,7 +185,7 @@ inputs:
 
 ```
 cd pysrc/eqtl
-$python run_eqtl_cis_run_in_bulk_wp10x.py <indir> <outdir> <window_size>   —> EDIT
+$python run_eqtl_cis_run_in_bulk_wp10_phase2.py <indir> <outdir> <window_size>   —> EDIT
 ```
 
 Edit
@@ -195,10 +195,10 @@ NEU_PU1="$path/wp10_ex_pu1_limix/geno_file/NEU_PU1/all_chrom.h5"
 
 - To change the cis window, you could simply change the third argument from "run eqtl" command:\
 for example: \
-    `lpython run_eqtl_cis_run_in_bulk_wp10x.py $path/wp10_ex_pu1_limix/phenotype_file/after_peer/ $path/wp10_ex_pu1_limix/eqtl_result/ 2500`
+    `lpython run_eqtl_cis_run_in_bulk_wp10_phase2.py $path/wp10_ex_pu1_limix/phenotype_file/after_peer/ $path/wp10_ex_pu1_limix/eqtl_result/ 2500`
 - To change to 5k window, you should just do:
 for example: \
-    `lpython run_eqtl_cis_run_in_bulk_wp10x.py $path/wp10_ex_pu1_limix/phenotype_file/after_peer/ $path/wp10_ex_pu1_limix/eqtl_result/ 5000`
+    `lpython run_eqtl_cis_run_in_bulk_wp10_phase2.py $path/wp10_ex_pu1_limix/phenotype_file/after_peer/ $path/wp10_ex_pu1_limix/eqtl_result/ 5000`
 
 You should also check if the eqtl run successfully, so run the following to check if job has gone through:\
 `python checkError.py <outdir>`
@@ -211,7 +211,7 @@ For example if the a job under NEU_PU1_peer_10(under eqtl_result) failed, you sh
 **7. run summary**
 
 code is the same folder as eqtl(`$path/wp10extlimix/pysrc/eqtl`) \
-`lpython run_summary_wp10x.py $path/wp10_ex_pu1_limix/eqtl_result_2500win/ after_peer/`
+`lpython run_summary_wp10_phase2.py $path/wp10_ex_pu1_limix/eqtl_result_2500win/ after_peer/`
 
 name the summary with `trait/qtl` type \
 `lpython rename_all_summary.py $path/wp10_ex_pu1_limix/eqtl_result/`
@@ -223,7 +223,7 @@ CHANGE to your window size, here it is 2.5KB —>     data = QtlData(my_fg,my_fp
 
 
 code is the same folder as eqtl(`$path/wp10extlimix/pysrc/eqtl`) \
-`lpython run_summary_wp10x.py $path/wp10_ex_pu1_limix/eqtl_result_2500win/ after_peer/`
+`lpython run_summary_wp10_phase2.py $path/wp10_ex_pu1_limix/eqtl_result_2500win/ after_peer/`
 
 name the summary with `trait/qtl` type
 `lpython rename_all_summary.py $path/wp10_ex_pu1_limix/eqtl_result/`
