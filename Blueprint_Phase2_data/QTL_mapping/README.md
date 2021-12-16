@@ -2,7 +2,7 @@
 
 ########### before you run the pipeline, please bear the following in mind ###################\
 you should redirect the path to specific location to run each code. \
-you should create three main output folders before hand: \
+you should create three main output folders before hand: 
 - eqtl_result
 - geno_file
 - phenotype_file.
