@@ -1,13 +1,17 @@
 ## QTL mapping by Limix pipeline
 
 ########### before you run the pipeline, please bear the following in mind ###################\
-you should redirect the path to specific location to run each code.
-you should create three main output folders before hand: eqtl_result  geno_file  phenotype_file.
+you should redirect the path to specific location to run each code. \
+you should create three main output folders before hand: \
+- eqtl_result
+- geno_file
+- phenotype_file.
+
 b4_peer and after_peer two sub folders were created under phenotype_file
 #############################################################################################
 
 shortcuts \
-`lpython = /lustre/scratch114/projects/hematopoiesis/Blueprint/software/python-2.7.9/bin/python`
+`lpython = /<PATH>/python-2.7.9/bin/python`
 
 #############################################################################################
 
