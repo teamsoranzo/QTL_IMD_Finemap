@@ -15,7 +15,7 @@ Kousik Kundu<sup>1,2</sup>, Manuel Tardaguila<sup>1</sup>, Alice L. Mann<sup>1</
 
 
 
-**All the codes for this study are publicly available here.**
+**All the codes for this study are available here.**
 
 
 
